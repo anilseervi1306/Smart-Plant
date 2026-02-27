@@ -33,12 +33,18 @@ async def receive_sensor_data(data: SensorData):
     )
     
     # 2. Trigger Logic
-    command = logic.process_sensor_data(data)
+    logic_response = logic.process_sensor_data(data)
+    
+    # Pack extra gamification data into dict format for Firestore
+    data_dict = data.dict()
+    data_dict['timestamp'] = datetime.now().isoformat()
+    data_dict['health_score'] = logic_response["health_score"]
+    data_dict['care_points'] = logic_response["care_points"]
 
     # 3. specific Cloud Sync
-    cloud.sync_data(data)
+    cloud.sync_data(data_dict) # Pass dict instead of original model
     
-    return {"status": "success", "command": command}
+    return {"status": "success", "command": logic_response["command"]}
 
 @app.get("/api/status")
 async def get_status():

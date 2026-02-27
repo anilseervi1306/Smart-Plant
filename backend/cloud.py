@@ -36,7 +36,7 @@ class CloudSync:
             try:
                 # Firestore upload
                 doc_ref = self.db.collection('readings').document()
-                doc_ref.set(data.dict())
+                doc_ref.set(data if isinstance(data, dict) else data.dict())
                 print("Data synced to cloud.")
             except Exception as e:
                 print(f"Sync failed: {e}")
