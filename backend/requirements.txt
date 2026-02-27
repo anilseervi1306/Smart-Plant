@@ -12,3 +12,5 @@ adafruit-circuitpython-dht
 adafruit-circuitpython-bh1750
 firebase-admin
 sqlite3
+requests
+python-dotenv
