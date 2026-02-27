@@ -1,0 +1,14 @@
+flask
+fastapi
+uvicorn
+pydantic
+numpy
+pandas
+tensorflow
+keras
+pyserial
+RPI.GPIO
+adafruit-circuitpython-dht
+adafruit-circuitpython-bh1750
+firebase-admin
+sqlite3
